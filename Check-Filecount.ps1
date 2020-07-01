@@ -10,7 +10,7 @@
 		servers that get populated with files, that later on get processed and written
 		to a database before they are deleted.
 
-	.PARAMTER Path
+	.PARAMETER Path
 		The only mandatory parameter for the script is the Location to check.
 		Seems logical, doesn't it?
 
@@ -22,6 +22,7 @@
 		Give the threshold for when the check should turn to critical state with this parameter.
 		Defaults to 100 (files in Folder) if omitted.
 #>
+
 [CmdletBinding()]
 Param(
     [Parameter(Mandatory=$true)]

@@ -39,7 +39,7 @@ if ( $Path.EndsWith('\') ) {
 	$Filecount = (Get-ChildItem "$Path\*" | Measure-Object ).Count;
 }
 
-# If there is no specification, take these values as standard
+# If there is no specification, take these values as default
 if ( $Warning -eq $null  -or $Warning -eq '' ) {
 	$Warning = 100
 }
@@ -49,20 +49,21 @@ if ( $Critical -eq $null -or $Critical -eq '' ) {
 }
 
 if ( $Filecount -lt $Warning){
-    $PluginOutput = "OK - Filecount in $Path is $($Filecount)"
-    $exitcode = 0
+	$PluginOutput = "OK - Filecount in $Path is $($Filecount)"
+	$exitcode = 0
 
 } elseif ( ($Filecount -ge $Warning) -and ( $Filecount -lt $Critical) ) {
-    $PluginOutput = "Warning - Filecount  in $Path is $($Filecount)"
-    $exitcode = 1
+	$PluginOutput = "Warning - Filecount  in $Path is $($Filecount)"
+	$exitcode = 1
 
 } elseif ( $Filecount -ge $Critical ) {
-    $PluginOutput = "Critical - Filecount  in $Path is $($Filecount)"
-    $exitcode = 2
+	$PluginOutput = "Critical - Filecount  in $Path is $($Filecount)"
+	$exitcode = 2
+
 } else {
-    $PluginOutput = "Unknown - something went wrong"
-    $exitcode = 3
- }
+	$PluginOutput = "Unknown - something went wrong"
+	$exitcode = 3
+}
 
 # add performance data string to Plugin Output
 # we compile a default label that is filecount_<Name of Destination Folder>

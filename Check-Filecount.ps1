@@ -25,10 +25,10 @@
 
 [CmdletBinding()]
 Param(
-    [Parameter(Mandatory=$true)]
-		[String]	$Path			,
-    [Int]			$Warning	,
-    [Int]			$Critical
+	[Parameter(Mandatory=$true)]
+	[String]	$Path			,
+	[Int]			$Warning	,
+	[Int]			$Critical
 )
 
 # it shouldn't make a difference if the user inputs a path with or
@@ -68,13 +68,13 @@ if ( $Filecount -lt $Warning){
 # we compile a default label that is filecount_<Name of Destination Folder>
 # e.g. "C:\Users\JonDoe\Downloads" defaults to "filecount_Downloads"
 #
-# Windows-Paths are represented with Backslash. Please, I beg you, don't use
-# silly characters like whitespace in your Paths. Just don't.
+# Windows-Paths are represented with backslash. Please, I beg you, don't use
+# silly characters like whitespace in your path names. Just don't.
 $ExplodedPath = $Path.Split('\')
 $LengthOfPath = $ExplodedPath.Length
 
-# You don't have to worry whether ending your path with a backslash or not, we
-# cover that here
+# the user shouldn't have to worry about wether to end the pathstring with
+# whitespace or not. Hence this little section.
 if ( $Path.EndsWith('\') ) {
 	$IndexSubtractor = 2
 } else {
